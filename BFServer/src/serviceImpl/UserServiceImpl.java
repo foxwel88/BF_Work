@@ -111,8 +111,10 @@ public class UserServiceImpl implements UserService{
 		writefile(username+" "+password);
 		return true;
 	}
+	@Override
 	public boolean modify(String username,String oldpassword,String newpassword) throws RemoteException
 	{
+		
 		readfile();
 		for (int i=0;i<num;++i)
 		{

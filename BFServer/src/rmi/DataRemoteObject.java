@@ -31,13 +31,13 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	}
 
 	@Override
-	public String readFile(String userId, String fileName) throws RemoteException{
+	public String readFile(String userId, String fileName,String version) throws RemoteException{
 		// TODO Auto-generated method stub
-		return iOService.readFile(userId, fileName);
+		return iOService.readFile(userId, fileName,version);
 	}
 
 	@Override
-	public String readFileList(String userId) throws RemoteException{
+	public String[] readFileList(String userId) throws RemoteException{
 		// TODO Auto-generated method stub
 		return iOService.readFileList(userId);
 	}
@@ -64,6 +64,18 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	public String execute(String code, String param) throws RemoteException {
 		// TODO Auto-generated method stub
 		return executeService.execute(code,param);
+	}
+
+	@Override
+	public boolean modify(String username, String oldpassword, String newpassword) throws RemoteException {
+		// TODO Auto-generated method stub
+		return userService.modify(username, oldpassword, newpassword);
+	}
+
+	@Override
+	public String[] readversionlist(String userId, String fileName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return iOService.readversionlist(userId, fileName);
 	}
 
 }
