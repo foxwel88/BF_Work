@@ -93,9 +93,11 @@ public class IOServiceImpl implements IOService{
 
 	@Override
 	public String readFile(String userId, String fileName, String version) throws RemoteException{
+		
+	
 		String[] versionlist=readversionlist(userId,fileName);
 		String name=userId+"_"+fileName+"_";
-		if (version=="")
+		if (version.equals(""))
 		{
 			name=name+versionlist[0];
 		}else name=name+version;

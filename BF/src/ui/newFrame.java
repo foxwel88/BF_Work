@@ -6,11 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import rmi.RemoteHelper;
+
 import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -36,7 +40,6 @@ public class newFrame extends JFrame {
 		myframe=this;
 
 		setTitle("Welcome!");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 368, 205);
 		setLocation(455, 250);
 
@@ -56,9 +59,23 @@ public class newFrame extends JFrame {
 		btnNewButton.setFont(new Font("Chalkboard", Font.PLAIN, 18));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				myframe.dispose();
-				FrameCenter.setframe(1);
+				boolean flag=false;
+				try {
+					flag=RemoteHelper.getInstance().getUserService().login(textField.getText(),passwordField.getText());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if (flag)
+				{
+					FrameCenter.nowuser=textField.getText();
+					myframe.dispose();
+					FrameCenter.setframe(1);
+				}else
+				{
+					passwordField.setText("");
+					
+				}
 			}
 		});
 		btnNewButton.setBounds(45, 116, 125, 37);
@@ -94,6 +111,8 @@ public class newFrame extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//myframe.dispose();
+				boolean flag;
+				
 				FrameCenter.setframe(2);
 			}
 		});

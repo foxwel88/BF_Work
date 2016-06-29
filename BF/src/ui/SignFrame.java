@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import rmi.RemoteHelper;
 
 import java.awt.Canvas;
 
@@ -32,7 +35,7 @@ public class SignFrame extends JFrame {
 	public SignFrame() {
 	
 		myframe=this;
-		setTitle("Welcome!");
+		setTitle("Sign up!");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 245, 420);
 		setLocation(520, 200);
@@ -46,9 +49,26 @@ public class SignFrame extends JFrame {
 		btnNewButton.setFont(new Font("Chalkboard", Font.PLAIN, 16));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				myframe.dispose();
-				FrameCenter.setframe(1);
+				if (passwordField.getText().equals(passwordField_1.getText()))
+				{
+					boolean flag = false;
+					try {
+						flag=RemoteHelper.getInstance().getUserService().signup(textField.getText(), passwordField.getText());
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if (flag)
+					{
+						FrameCenter.nowuser=textField.getText();
+						myframe.dispose();
+						FrameCenter.setframe(1);
+					}else
+					{
+						passwordField.setText("");
+						passwordField_1.setText("");
+					}
+				}
 			}
 		});
 		btnNewButton.setBounds(58, 318, 125, 37);
