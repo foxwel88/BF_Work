@@ -1,58 +1,49 @@
 package ui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-
-import rmi.RemoteHelper;
-
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
-public class openFrame extends JFrame {
+public class OpenFrame extends JFrame 
+{
 
 	private JPanel contentPane;
 	private JList list;
 
 
-
-	/**
-	 * Create the frame.
-	 */
-	public openFrame(String[] filelist) {
+	public OpenFrame(String[] filelist) 
+	{
 		setResizable(false);
-		setBounds(100, 100, 288, 366);
+		setBounds(490, 210, 288, 366);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblYour = new JLabel("Your file name");
+		JLabel lblYour = new JLabel("Choose your file");
 		lblYour.setFont(new Font("Chalkboard", Font.PLAIN, 18));
-		lblYour.setBounds(84, 13, 124, 16);
+		lblYour.setBounds(75, 13, 160, 16);
 		contentPane.add(lblYour);
 		
 		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnOk.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				if (((String)list.getSelectedValue())!=null)
 				{
 					String myfile=(String)list.getSelectedValue();
-					FrameCenter.nowfile=myfile;
-					FrameCenter.nowversion="";
-					FrameCenter.mainframe.solveopen();
-					
-					FrameCenter.mainframe.solveversion();
-					
+					UiController.nowfile=myfile;
+					UiController.nowversion="";
+					UiController.mainframe.solveopen();
+					UiController.mainframe.solveversion();
 					dispose();
 				}
 			}
@@ -63,12 +54,13 @@ public class openFrame extends JFrame {
 		contentPane.add(btnOk);
 		
 		list = new JList();
-		list.setBounds(48, 41, 199, 229);
+		list.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		list.setBounds(48, 41, 199, 232);
 		list.setListData(filelist);
+		JScrollPane myscroll=new JScrollPane(list);
+		myscroll.setBounds(48, 41, 199, 229);
 		
-		contentPane.add(list);
+		contentPane.add(myscroll);
 		this.setVisible(true);
 	}
-	
-
 }

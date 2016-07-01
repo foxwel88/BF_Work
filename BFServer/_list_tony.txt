@@ -1,9 +1,7 @@
-first
-second
-third
-lamb
-good
-mama
-right
-fuck
-perfect
+add
+Helloworld
+HINJU
+mul
+addfive
+InAndOut
+ondAdder

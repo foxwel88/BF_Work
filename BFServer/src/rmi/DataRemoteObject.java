@@ -43,7 +43,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	}
 
 	@Override
-	public boolean login(String username, String password) throws RemoteException {
+	public String login(String username, String password) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userService.login(username, password);
 	}
@@ -55,7 +55,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	}
 
 	@Override
-	public boolean signup(String username, String password) throws RemoteException {
+	public String signup(String username, String password) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userService.signup(username,password);
 	}
@@ -67,7 +67,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	}
 
 	@Override
-	public boolean modify(String username, String oldpassword, String newpassword) throws RemoteException {
+	public String modify(String username, String oldpassword, String newpassword) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userService.modify(username, oldpassword, newpassword);
 	}

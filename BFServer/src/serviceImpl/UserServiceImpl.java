@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	@Override
-	public boolean login(String username, String password) throws RemoteException {
+	public String login(String username, String password) throws RemoteException {
 		readfile();
 		for (int i=0;i<num;++i)
 		{
@@ -85,11 +85,11 @@ public class UserServiceImpl implements UserService{
 			{
 				if (passwordlist[i].equals(password))
 				{
-					return true;
-				}else return false;
+					return "Login Successful!";
+				}else return "Check your password please...";
 			}
 		}
-		return false;
+		return "No such user...";
 	}
 
 	@Override
@@ -98,21 +98,21 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public boolean signup(String username,String password) throws RemoteException
+	public String signup(String username,String password) throws RemoteException
 	{
 		readfile();
 		for (int i=0;i<num;++i)
 		{
 			if (namelist[i].equals(username))
 			{
-				return false;
+				return "Sorry, the username already exists.";
 			}
 		}
 		writefile(username+" "+password);
-		return true;
+		return "Signup Successful!";
 	}
 	@Override
-	public boolean modify(String username,String oldpassword,String newpassword) throws RemoteException
+	public String modify(String username,String oldpassword,String newpassword) throws RemoteException
 	{
 		
 		readfile();
@@ -124,11 +124,11 @@ public class UserServiceImpl implements UserService{
 				{
 					passwordlist[i]=newpassword;
 					writenewfile();
-					return true;
-				}else return false;
+					return "Modify your password Successful!";
+				}else return "Your old password is wrong";
 			}
 		}
-		return false;
+		return "No such user...";
 	}
 	
 	public static void main(String[] args) throws RemoteException

@@ -20,7 +20,7 @@ public class IOServiceImpl implements IOService{
 	
 	public String gettime()
 	{
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 		return df.format(new Date());
 	}
 	
@@ -132,6 +132,7 @@ public class IOServiceImpl implements IOService{
 		}
 		return false;
 	}
+	
 	@Override
 	public String[] readversionlist(String userId, String fileName)throws RemoteException
 	{

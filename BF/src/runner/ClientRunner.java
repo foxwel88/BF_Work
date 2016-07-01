@@ -6,38 +6,44 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import rmi.RemoteHelper;
-import service.IOService;
-import ui.FrameCenter;
-import ui.MainFrame;
-import ui.newFrame;
+import ui.UiController;
 
-public class ClientRunner {
+public class ClientRunner 
+{
 	private RemoteHelper remoteHelper;
 	
-	public ClientRunner() {
+	public ClientRunner() 
+	{
 		linkToServer();
 		initGUI();
 	}
 	
 	private void linkToServer() {
-		try {
+		try
+		{
 			remoteHelper = RemoteHelper.getInstance();
 			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
 			System.out.println("linked");
-		} catch (MalformedURLException e) {
+		}
+		catch (MalformedURLException e) 
+		{
 			e.printStackTrace();
-		} catch (RemoteException e) {
+		} catch (RemoteException e) 
+		{
 			e.printStackTrace();
-		} catch (NotBoundException e) {
+		} catch (NotBoundException e) 
+		{
 			e.printStackTrace();
 		}
 	}
 	
-	private void initGUI() {
-		FrameCenter.setframe(0);
+	private void initGUI() 
+	{
+		UiController.setframe(0);
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args)
+	{
 		ClientRunner cr = new ClientRunner();
 	}
 }

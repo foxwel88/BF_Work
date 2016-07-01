@@ -75,4 +75,14 @@ public class ExecuteServiceImpl implements ExecuteService {
 		}
 		return res;
 	}
+	public static void main(String[] args)
+	{
+		ExecuteServiceImpl temp=new ExecuteServiceImpl();
+		try {
+			System.out.println(temp.execute(",>++++++[<-------->-],,[<+>-],<.>.","4 3 "));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

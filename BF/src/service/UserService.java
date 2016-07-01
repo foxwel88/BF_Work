@@ -6,12 +6,12 @@ import java.rmi.RemoteException;
 
 public interface UserService extends Remote
 {
-	public boolean login(String username, String password) throws RemoteException;
+	public String login(String username, String password) throws RemoteException;
 
 	public boolean logout(String username) throws RemoteException;
 	
-	public boolean signup(String username,String password) throws RemoteException;
+	public String signup(String username,String password) throws RemoteException;
 
-	public boolean modify(String username, String oldpassword, String newpassword) throws RemoteException;
+	public String modify(String username, String oldpassword, String newpassword) throws RemoteException;
 	
 }
